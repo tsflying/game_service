@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<!--   
+    namespace：必须与对应的接口全类名一致  
+    id:必须与对应接口的某个对应的方法名一致  
+      
+ -->  
+<mapper namespace="com.rxqp.dao.IUserDao">  
+    
+    <sql id="base_column_list">id,name</sql>
+    
+    <insert id="save" parameterType="com.rxqp.model.User">  
+        insert into user(name) values(#{name})  
+    </insert>  
+      
+    <update id="update" parameterType="com.rxqp.model.User">  
+        update user set 
+        	<if test="name!=null and name!=''">
+        		name=#{name},
+        	</if>
+        	<if test="password!=null and password!=''">
+        		password=#{password},
+        	</if>
+        	lastLoginTime=#{lastLoginTime} where id=#{id}  
+    </update>  
+      
+    <delete id="delete" parameterType="long">  
+        delete from user where ID=#{id}  
+    </delete>  
+    
+    <select id="query" parameterType="com.rxqp.model.User" resultType="com.rxqp.model.User">  
+        select <include refid="base_column_list"></include> from user where id=#{id}  
+    </select>
+      
+    <select id="queryAll" resultType="com.rxqp.model.User">  
+        select <include refid="base_column_list"></include> from user  
+    </select>  
+      
+</mapper>  
