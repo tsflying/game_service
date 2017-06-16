@@ -1,12 +1,14 @@
 package com.rxqp.dao;
 
-import java.util.List;
-
 import com.rxqp.model.User;
+
+import java.util.List;
 
 public interface IUserDao {
 
 	User query(User user);
+
+	List<User> queryByOpenid(User user);
 
 	int save(User user);
 
@@ -15,4 +17,6 @@ public interface IUserDao {
 	boolean delete(int id);
 
 	List<User> queryAll();
+
+	int deductionCards(User user);
 }

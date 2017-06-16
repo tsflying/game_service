@@ -8,10 +8,11 @@
  -->  
 <mapper namespace="com.rxqp.dao.IUserDao">  
     
-    <sql id="base_column_list">id,name</sql>
+    <sql id="base_column_list">id,name,openid,imgUrl</sql>
     
-    <insert id="save" parameterType="com.rxqp.model.User">  
-        insert into user(name) values(#{name})  
+    <insert id="save" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.rxqp.model.User">
+        insert into user(openid,name,imgUrl,cardNum) values(#{openid},#{name},#{imgUrl},#{cardNum})
     </insert>  
       
     <update id="update" parameterType="com.rxqp.model.User">  
@@ -24,6 +25,14 @@
         	</if>
         	lastLoginTime=#{lastLoginTime} where id=#{id}  
     </update>  
+    
+    <update id="deductionCards" parameterType="com.rxqp.model.User">
+        update user set
+          <if test="deductionCards>0">
+              cardNum = cardNum - #{deductionCards},
+          </if>
+          updateTime = #{updateTime} where id=#{id}
+    </update>
       
     <delete id="delete" parameterType="long">  
         delete from user where ID=#{id}  
@@ -32,7 +41,11 @@
     <select id="query" parameterType="com.rxqp.model.User" resultType="com.rxqp.model.User">  
         select <include refid="base_column_list"></include> from user where id=#{id}  
     </select>
-      
+
+    <select id="queryByOpenid" parameterType="com.rxqp.model.User" resultType="com.rxqp.model.User">
+        select <include refid="base_column_list"></include> from user where openid=#{openid}
+    </select>
+
     <select id="queryAll" resultType="com.rxqp.model.User">  
         select <include refid="base_column_list"></include> from user  
     </select>  
