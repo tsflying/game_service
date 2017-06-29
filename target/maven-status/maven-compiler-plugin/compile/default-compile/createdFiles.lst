@@ -3,3 +3,4 @@ com\rxqp\dao\IUserDao.class
 com\rxqp\service\IUserService.class
 com\rxqp\service\impl\UserService.class
 com\rxqp\model\User.class
+com\rxqp\model\Result.class

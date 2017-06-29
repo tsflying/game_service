@@ -11,4 +11,6 @@ public interface IUserService {
 	public User getUserByOpenid(String openid);
 
 	public boolean deductionRoomCards(Integer id,Integer cards);
+
+	public boolean addRoomCards(Integer id,Integer cards);
 }

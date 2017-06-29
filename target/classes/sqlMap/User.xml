@@ -8,7 +8,7 @@
  -->  
 <mapper namespace="com.rxqp.dao.IUserDao">  
     
-    <sql id="base_column_list">id,name,openid,imgUrl</sql>
+    <sql id="base_column_list">id,name,openid,imgUrl,cardNum</sql>
     
     <insert id="save" useGeneratedKeys="true" keyProperty="id"
             parameterType="com.rxqp.model.User">
@@ -32,6 +32,14 @@
               cardNum = cardNum - #{deductionCards},
           </if>
           updateTime = #{updateTime} where id=#{id}
+    </update>
+
+    <update id="addCards" parameterType="com.rxqp.model.User">
+        update user set
+        <if test="addCards>0">
+            cardNum = cardNum + #{addCards},
+        </if>
+        updateTime = #{updateTime} where id=#{id}
     </update>
       
     <delete id="delete" parameterType="long">  

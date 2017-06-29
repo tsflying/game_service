@@ -1,5 +1,6 @@
 package com.rxqp.controller;
 
+import com.rxqp.model.Result;
 import com.rxqp.service.IUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,21 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/deductionRoomCards")
-    public boolean deductionRoomCards(@RequestParam("userId") Integer id,
+    public Result deductionRoomCards(@RequestParam("userId") Integer id,
                                      @RequestParam("cards") Integer cards) {
         boolean isSccess = userService.deductionRoomCards(id,cards);
-        return isSccess;
+        Result result = new Result();
+        result.setSuccess(isSccess);
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/addRoomCards")
+    public Result addRoomCards(@RequestParam("userId") Integer id,
+                                     @RequestParam("cards") Integer cards) {
+        boolean isSccess = userService.addRoomCards(id,cards);
+        Result result = new Result();
+        result.setSuccess(isSccess);
+        return result;
     }
 }

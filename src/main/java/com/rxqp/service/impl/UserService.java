@@ -58,4 +58,17 @@ public class UserService implements IUserService {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean addRoomCards(Integer id, Integer cards) {
+		User user = new User();
+		user.setId(id);
+		user.setAddCards(cards);
+		user.setUpdateTime(new Date());
+		int re = userDao.addCards(user);
+		if (re > 0){
+			return true;
+		}
+		return false;
+	}
 }

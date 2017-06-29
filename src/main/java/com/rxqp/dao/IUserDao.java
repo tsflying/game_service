@@ -19,4 +19,6 @@ public interface IUserDao {
 	List<User> queryAll();
 
 	int deductionCards(User user);
+
+	int addCards(User user);
 }

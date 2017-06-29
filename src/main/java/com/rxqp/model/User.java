@@ -13,6 +13,7 @@ public class User {
 	private String imgUrl;
 	private Integer cardNum;
 	private Integer deductionCards;//要扣减的房卡数
+	private Integer addCards;//要添加的房卡数
 	private Date updateTime;
 	private Date lastLoginTime;
 
@@ -78,5 +79,13 @@ public class User {
 
 	public void setDeductionCards(Integer deductionCards) {
 		this.deductionCards = deductionCards;
+	}
+
+	public Integer getAddCards() {
+		return addCards;
+	}
+
+	public void setAddCards(Integer addCards) {
+		this.addCards = addCards;
 	}
 }
