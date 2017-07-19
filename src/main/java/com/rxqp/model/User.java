@@ -16,6 +16,7 @@ public class User {
 	private Integer addCards;//要添加的房卡数
 	private Date updateTime;
 	private Date lastLoginTime;
+	private String unionid;
 
 	public Integer getId() {
 		return id;
@@ -87,5 +88,13 @@ public class User {
 
 	public void setAddCards(Integer addCards) {
 		this.addCards = addCards;
+	}
+
+	public String getUnionid() {
+		return unionid;
+	}
+
+	public void setUnionid(String unionid) {
+		this.unionid = unionid;
 	}
 }

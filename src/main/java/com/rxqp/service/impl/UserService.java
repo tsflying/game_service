@@ -71,4 +71,43 @@ public class UserService implements IUserService {
 		}
 		return false;
 	}
+
+	@Override
+	public boolean addRoomCardsByopenid(String openid, Integer cards) {
+		User user = new User();
+		user.setOpenid(openid);
+		user.setAddCards(cards);
+		user.setUpdateTime(new Date());
+		int re = userDao.addCardsByOpenid(user);
+		if (re > 0){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deductionRoomCardsByUnionid(String unionid, Integer cards) {
+		User user = new User();
+		user.setUnionid(unionid);
+		user.setDeductionCards(cards);
+		user.setUpdateTime(new Date());
+		int re = userDao.deductionCardsByUnionid(user);
+		if (re > 0){
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean addRoomCardsByUnionid(String unionid, Integer cards) {
+		User user = new User();
+		user.setUnionid(unionid);
+		user.setAddCards(cards);
+		user.setUpdateTime(new Date());
+		int re = userDao.addCardsByUnionid(user);
+		if (re > 0){
+			return true;
+		}
+		return false;
+	}
 }

@@ -6,6 +6,7 @@ package com.rxqp.model;
 public class Result {
     private Boolean isSuccess;
     private String description;
+    private Object obj;
 
     public Boolean getSuccess() {
         return isSuccess;
@@ -21,5 +22,13 @@ public class Result {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Object getObj() {
+        return obj;
+    }
+
+    public void setObj(Object obj) {
+        this.obj = obj;
     }
 }

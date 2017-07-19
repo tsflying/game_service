@@ -21,4 +21,10 @@ public interface IUserDao {
 	int deductionCards(User user);
 
 	int addCards(User user);
+
+    int addCardsByOpenid(User user);
+
+	int deductionCardsByUnionid(User user);
+
+	int addCardsByUnionid(User user);
 }

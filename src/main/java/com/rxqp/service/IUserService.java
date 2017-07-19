@@ -13,4 +13,10 @@ public interface IUserService {
 	public boolean deductionRoomCards(Integer id,Integer cards);
 
 	public boolean addRoomCards(Integer id,Integer cards);
+
+    boolean addRoomCardsByopenid(String openid, Integer cards);
+
+    public boolean deductionRoomCardsByUnionid(String unionid,Integer cards);
+
+    public  boolean addRoomCardsByUnionid(String unionid,Integer cards);
 }

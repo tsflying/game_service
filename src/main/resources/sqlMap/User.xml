@@ -12,7 +12,7 @@
     
     <insert id="save" useGeneratedKeys="true" keyProperty="id"
             parameterType="com.rxqp.model.User">
-        insert into user(openid,name,imgUrl,cardNum) values(#{openid},#{name},#{imgUrl},#{cardNum})
+        insert into user(openid,name,imgUrl,cardNum,unionid) values(#{openid},#{name},#{imgUrl},#{cardNum},#{unionid})
     </insert>  
       
     <update id="update" parameterType="com.rxqp.model.User">  
@@ -34,12 +34,36 @@
           updateTime = #{updateTime} where id=#{id}
     </update>
 
+    <update id="deductionCardsByUnionid" parameterType="com.rxqp.model.User">
+        update user set
+        <if test="deductionCards>0">
+            cardNum = cardNum - #{deductionCards},
+        </if>
+        updateTime = #{updateTime} where unionid=#{unionid}
+    </update>
+
     <update id="addCards" parameterType="com.rxqp.model.User">
         update user set
         <if test="addCards>0">
             cardNum = cardNum + #{addCards},
         </if>
         updateTime = #{updateTime} where id=#{id}
+    </update>
+
+    <update id="addCardsByOpenid" parameterType="com.rxqp.model.User">
+        update user set
+        <if test="addCards>0">
+            cardNum = cardNum + #{addCards},
+        </if>
+        updateTime = #{updateTime} where openId=#{openid}
+    </update>
+
+    <update id="addCardsByUnionid" parameterType="com.rxqp.model.User">
+        update user set
+        <if test="addCards>0">
+            cardNum = cardNum + #{addCards},
+        </if>
+        updateTime = #{updateTime} where unionid=#{unionid}
     </update>
       
     <delete id="delete" parameterType="long">  

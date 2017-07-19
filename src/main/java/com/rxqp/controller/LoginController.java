@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 
+	public static int NEW_PLAYER_CARDS = 20;
 	@Resource
 	IUserService userService;
 
@@ -27,11 +28,14 @@ public class LoginController {
 	@RequestMapping(value = "/addUser")
 	public User addUser(HttpServletRequest request, @RequestParam("openid") String openid,
 						@RequestParam("name") String name,
-						@RequestParam("imgUrl") String imgUrl) {
+						@RequestParam("imgUrl") String imgUrl,
+						@RequestParam("unionid") String unionid) {
 		User user = new User();
 		user.setOpenid(openid);
 		user.setName(name);
 		user.setImgUrl(imgUrl);
+		user.setCardNum(NEW_PLAYER_CARDS);
+		user.setUnionid(unionid);
 		int userId = userService.addUser(user);
 		return user;
 	}
